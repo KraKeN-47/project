@@ -1,32 +1,39 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import LandingPage from "../pages/landingPage";
+import {LandingPage,LoginPage,RegisterPage} from "../pages";
 
-// eslint-disable-next-line import/no-anonymous-default-export
-const R = () => (
+import {paths} from './paths';
+const Router = () => {
+    console.log("switched")
+    return (
     <BrowserRouter >
         <div>
             <Switch>
-                {routes.map(route => (
-                    <Route {...route}/>
+                {routes.map((route,index) => (
+                    <Route key={index} exact {...route} />
                 ))}
             </Switch>
         </div>
     </BrowserRouter>)
-
+}
 export const routes = [
     {
-        path: '/home',
+        path: paths.home,
         component: LandingPage,
         protected: false
     },
     {
-        path: '/test',
-        component: LandingPage,
+        path: paths.login,
+        component: LoginPage,
+        protected: false
+    },
+    {
+        path: paths.register,
+        component: RegisterPage,
         protected: false
     }
 
 ]
 
-export default R
+export default Router
