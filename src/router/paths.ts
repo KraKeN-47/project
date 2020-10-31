@@ -2,6 +2,7 @@ export enum paths {
     home = "/",
     register = "/register",
     login = "/login",
-    confirmOrder = "/confirm-order",
-    freeTimes = "/place-order"
+    availableTimes = "/available-items",
+    reservedTimes = "/reserved-items",
+    adminPage = "/admin"
 }
