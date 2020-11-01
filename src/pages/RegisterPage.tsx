@@ -6,9 +6,20 @@ const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPass, setRepeatPass] = useState("");
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+  };
   return (
-    <Box>
-      <FormControl>
+    <Box
+      width="30%"
+      style={{ background: "cyan" }}
+      borderRadius="20px"
+      padding="20px"
+      margin="auto"
+      marginTop="20%"
+      textAlign="center"
+    >
+      <form style={{ display: "grid" }} onSubmit={handleSubmit}>
         <TextField
           style={{ paddingBottom: "20px" }}
           color="primary"
@@ -48,9 +59,9 @@ const RegisterPage = () => {
           required
         />
         <Button color="primary" variant="outlined" type="submit">
-          Užsiregistruoti
+          Registruotis
         </Button>
-      </FormControl>
+      </form>
     </Box>
   );
 };

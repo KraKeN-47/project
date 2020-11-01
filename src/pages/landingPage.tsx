@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "@material-ui/core";
+import { Box, Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 
 import { paths } from "../router/paths";
@@ -13,15 +13,25 @@ const LandingPage: React.FC = () => {
     history.push(paths.register);
   };
   return (
-    <div>
+    <Box
+      width="30%"
+      style={{ background: "cyan" }}
+      borderRadius="20px"
+      padding="20px"
+      margin="auto"
+      marginTop="20%"
+      textAlign="center"
+    >
       <h1>Sveiki atvykę į Naminių gyvūnų viešbutį</h1>
-      <Button variant="outlined" color="primary" onClick={handleLogin}>
-        Prisijungti
-      </Button>
+      <div style={{ paddingBottom: "10px" }}>
+        <Button variant="outlined" color="primary" onClick={handleLogin}>
+          Prisijungti
+        </Button>
+      </div>
       <Button variant="outlined" color="secondary" onClick={handleRegister}>
         Registruotis
       </Button>
-    </div>
+    </Box>
   );
 };
 
