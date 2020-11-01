@@ -24,11 +24,11 @@ const LandingPage: React.FC = () => {
     >
       <h1>Sveiki atvykę į Naminių gyvūnų viešbutį</h1>
       <div style={{ paddingBottom: "10px" }}>
-        <Button variant="outlined" color="primary" onClick={handleLogin}>
+        <Button variant="contained" color="primary" onClick={handleLogin}>
           Prisijungti
         </Button>
       </div>
-      <Button variant="outlined" color="secondary" onClick={handleRegister}>
+      <Button variant="contained" color="secondary" onClick={handleRegister}>
         Registruotis
       </Button>
     </Box>

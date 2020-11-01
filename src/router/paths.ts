@@ -1,8 +1,9 @@
 export enum paths {
-    home = "/",
-    register = "/register",
-    login = "/login",
-    availableTimes = "/available-items",
-    reservedTimes = "/reserved-items",
-    adminPage = "/admin"
+  home = "/",
+  register = "/register",
+  login = "/login",
+  availableTimes = "/available-items",
+  reservedTimes = "/reserved-items",
+  adminPage = "/admin",
+  users = "/users",
 }

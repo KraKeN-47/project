@@ -12,14 +12,17 @@ import {
 } from "../pages";
 import { Routes } from "../types/types";
 import Path from "./Path";
+import Layout from "../pages/Layout";
 
 const Router = () => (
   <BrowserRouter>
-    <Switch>
-      {routes.map((route, index) => (
-        <Path key={index} exact {...route} />
-      ))}
-    </Switch>
+    <Layout>
+      <Switch>
+        {routes.map((route, index) => (
+          <Path key={index} exact {...route} />
+        ))}
+      </Switch>
+    </Layout>
   </BrowserRouter>
 );
 

@@ -117,7 +117,7 @@ const RegisterPage = () => {
           onChange={(event) => setAnswer(event.target.value)}
           required
         />
-        <Button color="primary" variant="outlined" type="submit">
+        <Button color="primary" variant="contained" type="submit">
           Registruotis
         </Button>
       </form>

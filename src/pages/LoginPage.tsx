@@ -22,9 +22,12 @@ const Login: React.FC = () => {
         dispatch(
           setUserType({ id: user.id, level: user.level, name: user.name })
         );
+        localStorage.setItem("token", user.token);
         user.level <= 1
           ? history.push(paths.availableTimes)
-          : history.push(paths.adminPage);
+          : user.level > 2
+          ? history.push(paths.adminPage)
+          : history.push(paths.reservedTimes);
       })
       .catch((resp) => alert(resp.response.data));
   };
@@ -54,7 +57,7 @@ const Login: React.FC = () => {
           onChange={(event) => setPassword(event.target.value)}
           style={{ paddingBottom: "20px" }}
         />
-        <Button variant="outlined" type="submit">
+        <Button variant="contained" type="submit">
           Prisijungti
         </Button>
       </form>
