@@ -15,13 +15,11 @@ import Path from "./Path";
 
 const Router = () => (
   <BrowserRouter>
-    <div>
-      <Switch>
-        {routes.map((route, index) => (
-          <Path key={index} exact {...route} />
-        ))}
-      </Switch>
-    </div>
+    <Switch>
+      {routes.map((route, index) => (
+        <Path key={index} exact {...route} />
+      ))}
+    </Switch>
   </BrowserRouter>
 );
 

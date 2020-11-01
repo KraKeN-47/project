@@ -3,12 +3,18 @@ import { useSelector } from "react-redux";
 import { Redirect, Route } from "react-router-dom";
 
 import { selectUserTypeState } from "../modules/userType/userType.selector";
-import { Routes } from "../types/types";
+import { IUserType, Routes } from "../types/types";
 
-const ProtectedRoute = (props: any) => (
+interface ProtectedRouteProps {
+  userType: IUserType;
+  routeProps: Routes;
+}
+
+const ProtectedRoute = ({ routeProps, userType }: ProtectedRouteProps) => (
   <>
-    {props.userLevel !== undefined && props.userLevel < props.level ? (
-      <Route {...props} />
+    {routeProps.userLevel !== undefined &&
+    routeProps.userLevel < userType.level ? (
+      <Route {...routeProps} />
     ) : (
       <Redirect to="/" />
     )}
@@ -17,11 +23,14 @@ const ProtectedRoute = (props: any) => (
 
 const Path = (props: Routes) => {
   const userType = useSelector(selectUserTypeState);
-
+  const protectedRouteProps: ProtectedRouteProps = {
+    routeProps: props,
+    userType,
+  };
   return (
     <>
       {props.protected ? (
-        <ProtectedRoute {...props} {...userType} />
+        <ProtectedRoute {...protectedRouteProps} />
       ) : (
         <Route {...props} />
       )}
