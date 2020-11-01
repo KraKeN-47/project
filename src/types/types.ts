@@ -1,17 +1,17 @@
 import { RouteProps } from "react-router-dom";
 
 export interface IUserType {
-    type: string,
-    level: number
+  type: string;
+  level: number;
 }
 
 export interface ReduxStoreRootTypes {
-    userType: IUserType
+  userType: IUserType;
 }
 
 export interface Routes extends RouteProps {
-    component: React.FC,
-    path: string,
-    protected: boolean | undefined,
-    userLevel?: number
+  component: React.FC;
+  path: string;
+  protected: boolean | undefined;
+  userLevel?: number;
 }

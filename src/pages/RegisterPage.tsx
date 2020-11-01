@@ -1,13 +1,46 @@
-import { Box, Button, FormControl, TextField } from "@material-ui/core";
+import { Box, Button, TextField, Select, MenuItem } from "@material-ui/core";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import jwt from "jwt-decode";
+
+import { api } from "../global/variables";
+import { paths } from "../router/paths";
+import { setUserType } from "../modules/userType/userType.slice";
 
 const RegisterPage = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPass, setRepeatPass] = useState("");
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const [question, setQuestion] = useState("");
+  const [answer, setAnswer] = useState("");
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    await api
+      .post("/Users", {
+        name,
+        email,
+        password,
+        question,
+        answer,
+      })
+      .then((x: any) => {
+        alert("Vartotojas užregistruotas");
+        const data: any = jwt(x.data.authToken);
+        localStorage.setItem("level", data.level);
+        localStorage.setItem("name", data.name);
+        dispatch(
+          setUserType({
+            level: Number(localStorage.getItem("level")),
+            type: "",
+          })
+        );
+        history.push(paths.availableTimes);
+      })
+      .catch((x) => alert(x.response.data));
   };
   return (
     <Box
@@ -16,7 +49,7 @@ const RegisterPage = () => {
       borderRadius="20px"
       padding="20px"
       margin="auto"
-      marginTop="20%"
+      marginTop="10%"
       textAlign="center"
     >
       <form style={{ display: "grid" }} onSubmit={handleSubmit}>
@@ -56,6 +89,32 @@ const RegisterPage = () => {
           name="repeatPassword"
           type="password"
           onChange={(event) => setRepeatPass(event.target.value)}
+          required
+        />
+        <label>Slaptas klausimas</label>
+        <Select
+          name="question"
+          onChange={(event: any) => setQuestion(event.target.value)}
+        >
+          <MenuItem value="What's my surename?">What's my surename?</MenuItem>
+          <MenuItem value="What's my favourite pet's name?">
+            What's my favourite pet's name?
+          </MenuItem>
+          <MenuItem value="What is my Mother's name?">
+            What is my Mother's name?
+          </MenuItem>
+          <MenuItem value="What is my Father's name?">
+            What is my Father's name?
+          </MenuItem>
+        </Select>
+        <TextField
+          style={{ paddingBottom: "20px" }}
+          color="primary"
+          id="outlined-basic"
+          label="Klausimo atsakymas"
+          name="answer"
+          type="text"
+          onChange={(event) => setAnswer(event.target.value)}
           required
         />
         <Button color="primary" variant="outlined" type="submit">

@@ -13,7 +13,7 @@ interface ProtectedRouteProps {
 const ProtectedRoute = ({ routeProps, userType }: ProtectedRouteProps) => (
   <>
     {routeProps.userLevel !== undefined &&
-    routeProps.userLevel < userType.level ? (
+    routeProps.userLevel <= userType.level ? (
       <Route {...routeProps} />
     ) : (
       <Redirect to="/" />

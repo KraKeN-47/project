@@ -1,5 +1,5 @@
-import React, { SyntheticEvent, useState } from "react";
-import { FormControl, TextField, Box, Button } from "@material-ui/core";
+import React, { useState } from "react";
+import { TextField, Box, Button } from "@material-ui/core";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
