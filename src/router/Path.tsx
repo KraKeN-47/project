@@ -1,12 +1,14 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Redirect, Route } from "react-router-dom";
+import jwt from "jwt-decode";
 
-import { selectUserTypeState } from "../modules/userType/userType.selector";
-import { IUserType, Routes } from "../types/types";
+import { selectUserTypeState } from "../modules/userType/userData.selector";
+import { setUserType } from "../modules/userType/userData.slice";
+import { IUserData, Routes } from "../types/types";
 
 interface ProtectedRouteProps {
-  userType: IUserType;
+  userType: IUserData;
   routeProps: Routes;
 }
 
@@ -23,10 +25,16 @@ const ProtectedRoute = ({ routeProps, userType }: ProtectedRouteProps) => (
 
 const Path = (props: Routes) => {
   const userType = useSelector(selectUserTypeState);
+  const dispatch = useDispatch();
   const protectedRouteProps: ProtectedRouteProps = {
     routeProps: props,
     userType,
   };
+  const token = localStorage.getItem("token");
+  if (userType.level === 0 && token !== null) {
+    const data: IUserData = jwt(token);
+    dispatch(setUserType({ id: data.id, name: data.name, level: data.level }));
+  }
   return (
     <>
       {props.protected ? (

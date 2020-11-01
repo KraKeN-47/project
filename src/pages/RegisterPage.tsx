@@ -6,7 +6,7 @@ import jwt from "jwt-decode";
 
 import { api } from "../global/variables";
 import { paths } from "../router/paths";
-import { setUserType } from "../modules/userType/userType.slice";
+import { setUserType } from "../modules/userType/userData.slice";
 
 const RegisterPage = () => {
   const history = useHistory();
@@ -27,15 +27,15 @@ const RegisterPage = () => {
         question,
         answer,
       })
-      .then((x: any) => {
+      .then((resp: any) => {
+        const data: any = jwt(resp.data.authToken);
         alert("Vartotojas užregistruotas");
-        const data: any = jwt(x.data.authToken);
-        localStorage.setItem("level", data.level);
-        localStorage.setItem("name", data.name);
+        localStorage.setItem("token", resp.data.authToken);
         dispatch(
           setUserType({
-            level: Number(localStorage.getItem("level")),
-            type: "",
+            level: data.level,
+            name: data.name,
+            id: data.id,
           })
         );
         history.push(paths.availableTimes);
@@ -45,7 +45,7 @@ const RegisterPage = () => {
   return (
     <Box
       width="30%"
-      style={{ background: "cyan" }}
+      style={{ background: "tan" }}
       borderRadius="20px"
       padding="20px"
       margin="auto"

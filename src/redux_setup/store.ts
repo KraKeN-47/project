@@ -1,12 +1,12 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
-import userTypeReducer from '../modules/userType/userType.slice';
-import { ReduxStoreRootTypes } from '../types/types';
+import userDataReducer from "../modules/userType/userData.slice";
+import { ReduxStoreRootTypes } from "../types/types";
 
 const combinedReducers = combineReducers<ReduxStoreRootTypes>({
-    userType: userTypeReducer
-})
+  userData: userDataReducer,
+});
 
 export const store = configureStore({
-    reducer: combinedReducers
-})
+  reducer: combinedReducers,
+});

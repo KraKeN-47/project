@@ -1,12 +1,13 @@
 import { RouteProps } from "react-router-dom";
 
-export interface IUserType {
-  type: string;
+export interface IUserData {
+  name: string;
   level: number;
+  id: number;
 }
 
 export interface ReduxStoreRootTypes {
-  userType: IUserType;
+  userData: IUserData;
 }
 
 export interface Routes extends RouteProps {

@@ -1,19 +1,37 @@
 import React, { useState } from "react";
 import { TextField, Box, Button } from "@material-ui/core";
+import { useDispatch } from "react-redux";
+
+import { setUserType } from "../modules/userType/userData.slice";
+import { api } from "../global/variables";
+import { useHistory } from "react-router";
+import { paths } from "../router/paths";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(email);
-    console.log(password);
+    await api
+      .post("Users/login", { email, password })
+      .then((resp) => {
+        const user = resp.data.userData;
+        dispatch(
+          setUserType({ id: user.id, level: user.level, name: user.name })
+        );
+        user.level <= 1
+          ? history.push(paths.availableTimes)
+          : history.push(paths.adminPage);
+      })
+      .catch((resp) => alert(resp.response.data));
   };
   return (
     <Box
       width="30%"
-      style={{ background: "cyan" }}
+      style={{ background: "tan" }}
       borderRadius="20px"
       padding="20px"
       margin="auto"

@@ -15,7 +15,7 @@ const LandingPage: React.FC = () => {
   return (
     <Box
       width="30%"
-      style={{ background: "cyan" }}
+      style={{ background: "tan" }}
       borderRadius="20px"
       padding="20px"
       margin="auto"
