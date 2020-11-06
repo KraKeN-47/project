@@ -4,9 +4,9 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import jwt from "jwt-decode";
 
-import { api } from "../global/variables";
-import { paths } from "../router/paths";
-import { setUserType } from "../modules/userType/userData.slice";
+import { api } from "global/variables";
+import { paths } from "router/paths";
+import { setUserType } from "modules/userType/userData.slice";
 
 const RegisterPage = () => {
   const history = useHistory();

@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 
-import { paths } from "../router/paths";
+import { paths } from "router/paths";
 
 const LandingPage: React.FC = () => {
   const history = useHistory();

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { TextField, Box, Button } from "@material-ui/core";
 import { useDispatch } from "react-redux";
-
-import { setUserType } from "../modules/userType/userData.slice";
-import { api } from "../global/variables";
 import { useHistory } from "react-router";
-import { paths } from "../router/paths";
+
+import { setUserType } from "modules/userType/userData.slice";
+import { api } from "global/variables";
+import { paths } from "router/paths";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");

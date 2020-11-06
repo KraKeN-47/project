@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
-import userDataReducer from "../modules/userType/userData.slice";
-import { ReduxStoreRootTypes } from "../types/types";
+import userDataReducer from "modules/userType/userData.slice";
+import { ReduxStoreRootTypes } from "types/types";
 
 const combinedReducers = combineReducers<ReduxStoreRootTypes>({
   userData: userDataReducer,

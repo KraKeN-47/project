@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, Route } from "react-router-dom";
 import jwt from "jwt-decode";
 
-import { selectUserTypeState } from "../modules/userType/userData.selector";
-import { setUserType } from "../modules/userType/userData.slice";
-import { IUserData, Routes } from "../types/types";
+import { selectUserTypeState } from "modules/userType/userData.selector";
+import { setUserType } from "modules/userType/userData.slice";
+import { IUserData, Routes } from "types/types";
 
 interface ProtectedRouteProps {
   userType: IUserData;

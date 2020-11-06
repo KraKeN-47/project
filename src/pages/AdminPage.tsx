@@ -1,7 +1,7 @@
 import { Box, Button } from "@material-ui/core";
 import React from "react";
 import { useHistory } from "react-router";
-import { paths } from "../router/paths";
+import { paths } from "router/paths";
 
 const AdminPage = () => {
   const history = useHistory();

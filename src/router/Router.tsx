@@ -9,10 +9,10 @@ import {
   RegisterPage,
   PlacedOrdersListPage,
   AdminPage,
-} from "../pages";
-import { Routes } from "../types/types";
+} from "pages";
+import { Routes } from "types/types";
 import Path from "./Path";
-import Layout from "../pages/Layout";
+import Layout from "pages/Layout";
 
 const Router = () => (
   <BrowserRouter>
